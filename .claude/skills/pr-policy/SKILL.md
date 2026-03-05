@@ -113,7 +113,7 @@ Use for:
 
 **Squash commit message format:**
 ```
-[#issue] Component: Description (#pr)
+gh-<issue>: <imperative description> (#pr)
 
 - Key change 1
 - Key change 2
@@ -171,6 +171,8 @@ main
     ├── feature/1/2-child-issue-one
     └── feature/1/3-child-issue-two
 ```
+
+**Rule:** When child issues exist, ALWAYS create corresponding sub-branches. Every child issue gets its own `feature/parent/child-description` branch. Sub-branches mirror sub-issues — if you decomposed the issue, decompose the branch.
 
 **Merge order:** Children → Parent → Main
 

@@ -32,9 +32,7 @@ There are two ways users invoke this workflow:
 The user invokes `/gh-sdlc <objective>` or describes an objective alongside the SDLC trigger BEFORE starting work. Run the full pipeline from Phase 1 (planning) through Phase 5 (tracking), including implementation.
 
 ### B) Retroactive: Ship completed work
-The user has already done the work (code is written, changes exist) and now invokes `/gh-sdlc` or says "commit" / "ship it" to formalize it. Analyze the session's completed work (git diff, changed files, session context) and run the pipeline — proper decomposition, issues, project tracking, branching, atomic commits, PR, merge.
-
-**Phase 2 (Implementation) is skipped** — the code already exists. Instead, during branching (Phase 1) and commit/PR (Phase 3), analyze the existing diff and stage changes into proper atomic commits on the correct branch(es).
+The user has already done the work (code is written, changes exist) and now invokes `/gh-sdlc` or says "commit" / "ship it" to formalize it. Analyze the session's completed work (git diff, changed files, session context) and run the full pipeline — proper decomposition, issues, project tracking, commits, PR, merge. Do NOT skip steps just because code already exists.
 
 **In both cases**, proper decomposition, issue creation, project tracking, branching, atomic commits, and PR creation MUST happen. The only difference is whether implementation occurs during the workflow (A) or has already occurred before it (B).
 
@@ -123,6 +121,7 @@ This workflow orchestrates four policy skills:
 5. **Create branches:**
    - Parent: `feature/<parent-number>-<description>`
    - Children: `feature/<parent-number>/<child-number>-<description>`
+   - **Always** create sub-branches for sub-issues — if the issue was decomposed, the branch must be too
 
 ### Phase 2: Implementation (commit-policy)
 
@@ -139,6 +138,8 @@ This workflow orchestrates four policy skills:
    ```bash
    git commit --fixup=<target-hash>
    ```
+
+**For retroactive use (Use Case B):** Code already exists. Analyze the diff, create the branch, stage and commit changes with proper atomic commits and messages. Do not re-implement — just formalize.
 
 ### Phase 3: PR Creation (pr-policy + gh-projects)
 

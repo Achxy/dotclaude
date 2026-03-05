@@ -187,6 +187,8 @@ graph TD
 - `feature/1/3-core-bot-client`
 - `bugfix/56-null-pointer-handler`
 
+**Rule:** When child issues exist, ALWAYS create corresponding sub-branches. Every child issue gets its own `feature/parent/child-description` branch — no exceptions. Sub-branches mirror sub-issues: if you decomposed the issue, decompose the branch.
+
 ## Issue Lifecycle
 
 ```
