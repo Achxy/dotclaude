@@ -245,7 +245,7 @@ This workflow orchestrates four policy skills:
    ```
 2. **Self-review checklist** (pr-policy)
 3. **Create PR** with full metadata:
-   - Title: `[#issue] Component: Imperative description`
+   - Title: `gh-<issue>: <imperative description>` (same format as commits)
    - Body: Changes section with `Closes #N` inline (creates Development sidebar link when targeting main; use `Part of #N` for non-main targets), testing, checklist
    - Apply labels (existing ones), set project (`--project`), set milestone (`--milestone`)
    - Assign user as reviewer (`--reviewer <username>`) and assignee (`--assignee "@me"`)
@@ -379,7 +379,7 @@ Closes #11
 EOF
 
 # Create PR with full metadata
-gh pr create --title "[#11] Auth: Set up OAuth2 client" \
+gh pr create --title "gh-11: set up OAuth2 client" \
   --body-file /tmp/pr-body.md \
   --label "feature" \
   --project "Project Name" \

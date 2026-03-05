@@ -66,8 +66,9 @@ No bracket prefixes. Parent-child relationships use GitHub's sub-issue API, not 
 
 ### PR titles
 ```
-[#issue] Component: Imperative description
+gh-<issue>: <imperative description>
 ```
+Same format as commit messages — PR titles and commits are unified.
 
 ### Commit messages
 ```
