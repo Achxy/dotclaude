@@ -24,18 +24,20 @@ description: "Pull request standards and merge strategies (part of gh-sdlc). Pro
 
 ## PR Title Format
 
+PR titles use the same format as commit messages — the issue reference prefix followed by an imperative description:
+
 ```
-[#issue] Component: Imperative description
+gh-<issue>: <imperative description>
 ```
 
 **Examples:**
-- `[#6] Project: Initialize uv with discord.py dependencies`
-- `[#8] Commands: Implement command registration system`
-- `[#15] Auth: Add OAuth2 token refresh logic`
+- `gh-6: initialize uv with discord.py dependencies`
+- `gh-8: implement command registration system`
+- `gh-15: add OAuth2 token refresh logic`
 
 **Hotfix format (no issue):**
 ```
-hotfix: Critical issue description
+hotfix: critical issue description
 ```
 
 ## PR Creation Command
@@ -58,7 +60,7 @@ Closes #issue-number
 EOF
 
 gh pr create \
-  --title "[#issue] Component: Imperative description" \
+  --title "gh-<issue>: <imperative description>" \
   --body-file /tmp/pr-body.md \
   --label "existing-label" \
   --project "Project Name" \

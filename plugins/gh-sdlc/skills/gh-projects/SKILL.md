@@ -290,7 +290,7 @@ When creating PRs, attach project metadata directly:
 
 ```bash
 gh pr create \
-  --title "[#issue] Component: Description" \
+  --title "gh-<issue>: <imperative description>" \
   --body-file /tmp/pr-body.md \
   --project "Project Name" \
   --milestone "v1.0" \

@@ -39,7 +39,7 @@ Only after the plan is solid, proceed to execution:
 5. **Track on project board** — Following gh-projects: add to project, set fields, apply labels, assign milestone
 6. **Branch** — Create feature branches mirroring issue hierarchy (sub-branches for sub-issues)
 7. **Commit** — Atomic commits following commit-policy: `gh-<issue>: <imperative summary>`
-8. **Open PR** — Following pr-policy: proper title `[#issue] Component: Description`, body with template, labels, project, milestone, reviewer
+8. **Open PR** — Following pr-policy: title `gh-<issue>: <imperative description>`, body with template, labels, project, milestone, reviewer
 9. **Merge** — Squash and merge (default), delete branch, update project board
 10. **Close** — Update issue status, check parent completion
 
@@ -52,7 +52,7 @@ Only after the plan is solid, proceed to execution:
 - Write public-facing content (issues, PRs, commits) for strangers — no session context leakage
 - Apply existing labels; only create new ones when nothing fits
 - Always assign issues and PRs to the user (`--assignee "@me"`)
-- Squash commit message format: `gh-<issue>: <imperative description> (#pr)`
+- PR title format: `gh-<issue>: <imperative description>` (same as commit messages — NO bracket prefix like `[#issue]`)
 - Link child issues as sub-issues of parent via GraphQL API
 - Create sub-branches for every sub-issue: `feature/<parent>/<child>-<description>`
 
