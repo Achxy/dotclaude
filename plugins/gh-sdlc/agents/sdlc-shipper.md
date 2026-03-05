@@ -35,13 +35,14 @@ Only after the plan is solid, proceed to execution:
 
 ### Phase 1-5: Execute
 
-4. **Create issues** — Following issue-policy: proper titles, bodies, acceptance criteria, Mermaid diagrams for parent issues
-5. **Track on project board** — Following gh-projects: add to project, set fields, apply labels, assign milestone
-6. **Branch** — Create feature branches mirroring issue hierarchy (sub-branches for sub-issues)
-7. **Commit** — Atomic commits following commit-policy: `gh-<issue>: <imperative summary>`
-8. **Open PR** — Following pr-policy: title `gh-<issue>: <imperative description>`, body with template, labels, project, milestone, reviewer
-9. **Merge** — Squash and merge (default), delete branch, update project board
-10. **Close** — Update issue status, check parent completion
+4. **Create issues** — Following issue-policy: proper titles, bodies, acceptance criteria, Mermaid diagrams for parent issues. Create parent first, then children.
+5. **Link sub-issues** — IMMEDIATELY after creating children, link each as a sub-issue of the parent via GraphQL `addSubIssue`. This is a hard requirement, not optional.
+6. **Track on project board** — Following gh-projects: add ALL issues (parent AND children) to project, set fields, apply labels, assign milestone
+7. **Branch** — Create feature branches mirroring issue hierarchy. Sub-branches for sub-issues: `feature/<parent>/<child>-<description>`. No child issue without its own branch.
+8. **Commit** — Atomic commits following commit-policy: `gh-<issue>: <imperative summary>`
+9. **Open PR** — Following pr-policy: title `gh-<issue>: <imperative description>`, body with `Closes #<child>` in Changes section, labels, project, milestone, reviewer
+10. **Merge** — Rebase merge (default), ensure commit messages have `(#pr)` suffix, delete branch, update project board status to Done
+11. **Close** — Verify child issue auto-closed via `Closes`. Check if all siblings are done → close parent. Update parent's acceptance criteria checkboxes.
 
 ## Behavior
 
@@ -54,8 +55,10 @@ Only after the plan is solid, proceed to execution:
 - Always assign issues and PRs to the user (`--assignee "@me"`)
 - PR title format: `gh-<issue>: <imperative description>` (same as commit messages — NO bracket prefix like `[#issue]`)
 - Commit messages on main MUST include `(#pr)` suffix: `gh-<issue>: <imperative description> (#pr)`. For rebase merge, amend commits to add the PR number before merging. For squash merge, GitHub auto-appends it.
-- Link child issues as sub-issues of parent via GraphQL API
-- Create sub-branches for every sub-issue: `feature/<parent>/<child>-<description>`
+- **Sub-issue linking is MANDATORY and non-negotiable.** After creating child issues, IMMEDIATELY link each one as a sub-issue of the parent via the GraphQL `addSubIssue` mutation. Never skip this step. Every child must appear in the parent's sub-issue sidebar.
+- **Sub-branches mirror sub-issues exactly.** Every child issue gets its own `feature/<parent>/<child>-<description>` branch. If you decomposed the issue, you MUST decompose the branch. No exceptions.
+- **PR body must reference the child issue** with `Closes #<child>` in the Changes section to create the Development sidebar link and auto-close on merge.
+- **Parent issue stays open** until ALL children are closed. After each child PR merges, check if all siblings are done and close the parent if so.
 
 ## Interaction Mode
 
