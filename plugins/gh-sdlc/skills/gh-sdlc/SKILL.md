@@ -204,7 +204,7 @@ This workflow orchestrates four policy skills:
    - Body: Problem statement, acceptance criteria, technical scope
    - Assign to user (`--assignee "@me"`)
 3. **Decompose** into child issues if complex:
-   - Each child: single concern, one PR, title prefixed `[#parent-id]`
+   - Each child: single concern, one PR, linked to parent via sub-issue API
    - Assign each child to user (`--assignee "@me"`)
    - Add Mermaid diagram to parent
    - **Link as sub-issues** via GraphQL API (not just title prefix)
@@ -324,10 +324,10 @@ graph TD
 \`\`\`" \
   --label "feature,P1-high" --milestone "v1.0"
 
-# Create child issues
-gh issue create --title "[#10] Auth: Set up OAuth2 client" --label "feature" --milestone "v1.0"
-gh issue create --title "[#10] Auth: Implement token refresh" --label "feature" --milestone "v1.0"
-gh issue create --title "[#10] Auth: Add session management" --label "feature" --milestone "v1.0"
+# Create child issues (linked via sub-issue API, not title prefix)
+gh issue create --title "Auth: Set up OAuth2 client" --label "feature" --milestone "v1.0"
+gh issue create --title "Auth: Implement token refresh" --label "feature" --milestone "v1.0"
+gh issue create --title "Auth: Add session management" --label "feature" --milestone "v1.0"
 
 # Add to project
 gh project item-add 1 --owner "@me" --url "$(gh issue view 10 --json url -q .url)"

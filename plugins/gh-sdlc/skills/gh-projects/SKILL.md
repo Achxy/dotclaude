@@ -302,7 +302,7 @@ gh pr create \
 
 ### Create Issue with Full Metadata
 ```bash
-gh issue create --title "[#1] Auth: Implement OAuth2 flow" \
+gh issue create --title "Auth: Implement OAuth2 flow" \
   --body "## Problem Statement
 OAuth2 needed for third-party auth.
 
@@ -372,7 +372,7 @@ When starting a new project, execute this setup sequence:
 4. **Create custom fields**: Status, Priority, Story Points, Due Date
 5. **Link repository**: `gh project link <number> --owner "@me" --repo <repo>`
 6. **Create parent issues**: High-level feature issues with Mermaid diagrams
-7. **Decompose into children**: Atomic child issues with `[#parent]` prefix
+7. **Decompose into children**: Atomic child issues linked via sub-issue API
 8. **Add all issues to project**: Bulk add with field assignments
 9. **Set field values**: Priority, status, iteration for each item
 

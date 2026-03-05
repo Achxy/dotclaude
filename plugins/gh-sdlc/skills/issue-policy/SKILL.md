@@ -30,15 +30,15 @@ description: "GitHub issue creation and hierarchy standards (part of gh-sdlc). P
 ## Issue Title Format
 
 ```
-[#Parent-ID] Component: Imperative action description
+Component: Imperative action description
 ```
 
 **Examples:**
-- `[#1] Project: Initialize uv with discord.py dependencies`
-- `[#1] Bot: Implement core client with intents configuration`
-- `Commands: Add slash command registration system` (no parent)
+- `Project: Initialize uv with discord.py dependencies`
+- `Bot: Implement core client with intents configuration`
+- `Commands: Add slash command registration system`
 
-For child issues, ALWAYS prefix with `[#parent-id]`.
+Child issues use the same format — no bracket prefixes. Parent-child relationships are expressed via sub-issue linking (GraphQL API), not title conventions.
 
 ## Issue Body Structure
 
@@ -88,7 +88,7 @@ graph TD
 ### Child Issues
 - Address a SINGLE concern
 - Implementable in ONE pull request
-- Reference parent with `[#parent-id]` in title
+- Linked to parent via sub-issue API (not title prefix)
 - Each maps to exactly one PR
 
 ### Depth Limit
@@ -219,7 +219,7 @@ Always include assignment, labels, and milestone:
 
 ```bash
 gh issue create \
-  --title "[#parent] Component: Action description" \
+  --title "Component: Action description" \
   --body "..." \
   --label "feature" \
   --milestone "vX.Y" \
@@ -252,6 +252,6 @@ gh issue edit <number> --body "$UPDATED"
 
 - PR templates MUST require issue references
 - CI checks validate parent issues contain diagrams when children exist
-- CI checks verify child issues reference parents in titles
+- CI checks verify child issues are linked as sub-issues of their parent
 - Parent issues cannot close while children remain open
 - All child issues MUST be linked as sub-issues via the API
